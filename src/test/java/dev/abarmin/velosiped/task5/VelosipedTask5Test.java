@@ -1,8 +1,6 @@
 package dev.abarmin.velosiped.task5;
 
 import dev.abarmin.velosiped.helper.VelosipedHelper;
-import dev.abarmin.velosiped.task3.VelosipedTask3;
-import dev.abarmin.velosiped.task5.VelosipedTask5;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,18 +12,20 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Aleksandr Barmin
  */
 class VelosipedTask5Test {
   private VelosipedTask5 uut = VelosipedHelper.getInstance(VelosipedTask5.class);
-  private VelosipedTask3 server;
+  private VelosipedTask5Server server;
 
   @BeforeEach
   void setUp() {
-    server = uut.getBean(VelosipedTask3.class);
+    uut.init();
+
+    server = uut.getBean(VelosipedTask5Server.class);
     server.startServer(1234);
   }
 
