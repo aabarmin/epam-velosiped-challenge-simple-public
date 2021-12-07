@@ -5,6 +5,8 @@
 * [How to use this repository](#how-to-use-this-repository)
 * [How to make a for of this repository](#how-to-make-a-fork-of-this-repository)
 * [How to get updates of a remote repository](#how-to-get-updates-of-a-remote-repository)
+* [What is a task?](#what-is-the-task)
+* [How to solve a task?](#how-to-solve-a-task)
 
 ## How to use this repository
 
@@ -88,3 +90,127 @@ Don't forget to update your remote `main`:
 ```shell
 $ git push origin main
 ```
+
+## What is the task
+
+Any task in this repository consists of three parts:
+1. Description.
+2. An interface for the implementation.
+3. Tests for the task.
+
+The first part, the description is in JavaDoc of the interface, but anyway it's important to mention it here. The second
+part is the interface that declares a contract between a task and the solution. All the interfaces are in the
+`src/main/java` folder and look like this:
+
+```java
+/**
+ * Task 1 - Simple GET calculator.
+ *
+ * <p>
+ *   Implement a simple <pre>/sum</pre> endpoint which should receive requests via GET. The request
+ *   contains parameters <pre>a</pre> and <pre>b</pre> which are two numbers which should be sum. 
+ *   The result of the sum should be returned back to the user. 
+ * </p>
+ *
+ * <p>
+ *   The interface has two methods - <pre>startServer</pre> which starts a web server on a given
+ *   port and the <pre>stopServer</pre> method which stops the server.
+ * </p>
+ *
+ * @author Aleksandr Barmin
+ */
+public interface VelosipedTask1 {
+  /**
+   * Start a server on a given port. 
+   *
+   * @param port number
+   */
+  void startServer(int port);
+
+  /**
+   * Stop a started server.
+   */
+  void stopServer();
+}
+``` 
+
+The most important part of the task is a collection of tests that checks your implementation. Tests are stored in the
+`src/test/java` folder and has a name like the task name plus `Test` like `VelosipedTask1Test`.
+
+Tests are ordinary JUnit tests:
+
+```java
+class VelosipedTask1Test {
+  private VelosipedTask1 uut = VelosipedHelper.getInstance(VelosipedTask1.class);
+
+  @BeforeEach
+  void setUp() {
+    uut.startServer(1234);
+  }
+
+  @AfterEach
+  void tearDown() {
+    uut.stopServer();
+  }
+
+  @ParameterizedTest
+  @CsvSource({
+      "1,2",
+      "10,20",
+      "-1,-2"
+  })
+  void check_calculation(int a, int b) throws Exception {
+    // code of the test is here
+  }
+}
+```
+
+## How to solve a task
+
+First of all, it's better working on the separate task in its own branch. To create a separate branch, execute
+the following command:
+
+```shell script
+$ git checkout main
+$ git checkout -b <task-number>
+```
+
+In order to solve the task, it's necessary writing an implementation class that is in the same package as the interface
+and has a name with `Impl` at the end. This implementation should implement the interface of the task.
+
+```java
+public class VelosipedTask1Impl implements VelosipedTask1 {
+  @Override
+  public void startServer(int port) {
+    // TODO, add your implementation here
+  }
+
+  @Override
+  public void stopServer() {
+    // TODO, add your implementation here
+  }
+}
+```
+
+When all the tests are passed, don't forget to create a commit and push your changes to the remote repository:
+
+```shell script
+$ git commit
+$ git push --set-upstream <remote_name> <task-number>
+```
+
+The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
+to the master branch of your repository. It'll allow you to send your code for review to your colleagues or friends
+on the one hand and on the other hand you'll be able to take one more look into your code later. When the code is
+completed, you'll merge the task branch to the `main` branch.
+
+Updates from your remote `main` branch can be received using the following command:
+
+```shell script
+$ git checkout main
+$ git pull
+```
+
+Git looks quite complicated, but the following resources will help you be familiar with it shortly:
+* [ProGit](https://git-scm.com/book/en/v2)
+* [Git Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
