@@ -1,5 +1,8 @@
-package dev.abarmin.velosiped;
+package dev.abarmin.velosiped.task5;
 
+import dev.abarmin.velosiped.helper.VelosipedHelper;
+import dev.abarmin.velosiped.task3.VelosipedTask3;
+import dev.abarmin.velosiped.task5.VelosipedTask5;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

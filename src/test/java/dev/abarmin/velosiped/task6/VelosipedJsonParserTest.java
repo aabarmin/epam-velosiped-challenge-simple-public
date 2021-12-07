@@ -1,6 +1,7 @@
-package dev.abarmin.velosiped;
+package dev.abarmin.velosiped.task6;
 
-import org.junit.jupiter.api.Test;
+import dev.abarmin.velosiped.helper.VelosipedHelper;
+import dev.abarmin.velosiped.task6.VelosipedJsonParser;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;

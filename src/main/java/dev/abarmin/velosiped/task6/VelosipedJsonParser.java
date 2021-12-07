@@ -1,4 +1,4 @@
-package dev.abarmin.velosiped;
+package dev.abarmin.velosiped.task6;
 
 /**
  * @author Aleksandr Barmin
