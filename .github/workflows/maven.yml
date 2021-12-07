@@ -33,6 +33,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Uploading test results
+      if: always
       uses: actions/upload-artifact@v2
       with:
         name: test-results
