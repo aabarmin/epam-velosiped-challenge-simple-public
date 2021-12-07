@@ -18,7 +18,7 @@ It's recommended creating a fork of this repository to work on tasks independent
 To create a fork of this repository press a `Fork` button on the top right of this page. GitHub will ask you about
 the location of a newly created repository and next you'll be able to clone the repository to your local machine:
 
-```shell script
+```shell
 $ git clone https://github.com/your-account-name/epam-velosiped-challenge-simple-public
 ``` 
 
@@ -30,7 +30,7 @@ When the fork is created it'll not receive updates automatically, it's necessary
 for your local repository - you need to add a new remote to your local repository. To do it, 
 execute the following command:
 
-```shell script
+```shell
 $ git remote add -t main epam http://github.com/aabarmin/epam-velosiped-challenge-simple-public/
 ```
 
@@ -39,7 +39,7 @@ that you can send and receive updates from both remote locations - from mine and
 
 The following command will show what remotes are associated with your local repository:
 
-```shell script
+```shell
 $ git remote show
 
 epam
@@ -52,14 +52,14 @@ com/your-account-name/epam-velosiped-challenge-simple-public`), the `epam` remot
 The next step is to create a branch that will get updates from my repository. The following command will create
 such kind of branch:
 
-```shell script
+```shell
 $ git checkout -b epam_main --track epam/main
 ```
 
 This command will create a new branch called `epam_main` that receives updates from my repository. You can see the
 list of all your branches by executing the following command:
 
-```shell script
+```shell
 $ git branch -a
 
 epam_main
@@ -68,14 +68,14 @@ master
 
 When you would like to get updates, you need to pull updates from my repository:
 
-```shell script
+```shell
 $ git checkout epam_main
 $ git pull
 ```
 
 And next merge my changes to your `main` branch:
 
-```shell script
+```shell
 $ git checkout main
 $ git pull
 $ git merge epam_main
@@ -85,6 +85,6 @@ As a result, your `main` branch will receive updates and new tasks if they're pr
 
 Don't forget to update your remote `main`:
 
-```shell script
+```shell
 $ git push origin main
 ```
