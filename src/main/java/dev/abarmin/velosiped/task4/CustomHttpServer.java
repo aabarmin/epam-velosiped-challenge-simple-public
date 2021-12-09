@@ -23,8 +23,32 @@ import dev.abarmin.velosiped.task2.Request;
  * @author Aleksandr Barmin
  */
 public interface CustomHttpServer {
+    /**
+     * This method receives a request as a string and should convert it to the {@link Request}
+     * object accordingly.
+     *
+     * @param httpRequest to parse.
+     * @return a {@link Request} object.
+     */
     Request parseRequestParameters(String httpRequest);
-    String createhttpResponse(String responseBody);
+
+    /**
+     * This method receives a response <b>body</b> and should convert it to the HTTP response.
+     *
+     * @param responseBody to include into the HTTP response.
+     * @return a content of HTTP response.
+     */
+    String createHttpResponse(String responseBody);
+
+    /**
+     * Start a server on a given port.
+     *
+     * @param port number
+     */
     void startServer(int port);
+
+    /**
+     * Stop a started server.
+     */
     void stopServer();
 }

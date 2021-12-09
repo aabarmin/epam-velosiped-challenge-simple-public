@@ -97,7 +97,7 @@ class VelosipedTask4Test {
             "-1,-2"
     })
     void check_httpResponse(int a, int b) {
-        String response = server.createhttpResponse("{\"arg1\": " + a + ", \"arg2\": " + b + "}");
+        String response = server.createHttpResponse("{\"arg1\": " + a + ", \"arg2\": " + b + "}");
         assertTrue(response.contains("HTTP/1.1 200 OK"));
         assertTrue(response.contains("Date:"));
         assertTrue(response.contains("Server: VelosipedServer"));

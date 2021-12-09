@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Aleksandr Barmin
  */
-class VelosipedJsonParserTest {
-    private VelosipedJsonParser uut = VelosipedHelper.getInstance(VelosipedJsonParser.class);
+class VelosipedJsonAdapterTest {
+    private VelosipedJsonAdapter uut = VelosipedHelper.getInstance(VelosipedJsonAdapter.class);
 
     @ParameterizedTest
     @CsvSource({

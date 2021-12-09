@@ -1,6 +1,12 @@
 package dev.abarmin.velosiped.task2;
 
+/**
+ * DTO class for mapping incoming requests.
+ */
 public class Request {
+    private int arg1;
+    private int arg2;
+
     public Request() {
     }
 
@@ -8,9 +14,6 @@ public class Request {
         this.arg1 = arg1;
         this.arg2 = arg2;
     }
-
-    private int arg1;
-    private int arg2;
 
     public int getArg1() {
         return arg1;
@@ -27,6 +30,4 @@ public class Request {
     public void setArg2(int arg2) {
         this.arg2 = arg2;
     }
-
-
 }
