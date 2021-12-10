@@ -4,20 +4,22 @@ import dev.abarmin.velosiped.helper.VelosipedHelper;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Aleksandr Barmin
  */
 class VelosipedTask2Test {
   private VelosipedTask2 uut = VelosipedHelper.getInstance(VelosipedTask2.class);
-  private VelosipedSumService uut2 = VelosipedHelper.getInstance(VelosipedSumService.class);
+
 
   @BeforeEach
   void setUp() {
@@ -36,23 +38,23 @@ class VelosipedTask2Test {
       "-1,-2"
   })
   void check_calculation(int a, int b) throws Exception {
-    final URL url = new URL("http://localhost:1234/sum-with-controller?a=" + a + "&b=" + b);
-    final URLConnection connection = url.openConnection();
+    final URL url = new URL("http://localhost:1234/sum-post");
+    final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setDoOutput(true);
+    connection.setRequestMethod("POST");
+    connection.setRequestProperty("Content-Type", "application/json");
+
+    final String requestBody = "{\"arg1\": " + a + ", \"arg2\": " + b +"}";
+    try (final OutputStream outputStream = connection.getOutputStream()) {
+      outputStream.write(requestBody.getBytes(StandardCharsets.UTF_8));
+    }
+
     try (final InputStream stream = connection.getInputStream()) {
       final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
       final String response = reader.readLine();
-      assertEquals(a + b, Integer.parseInt(response));
-    }
-  }
 
-  @ParameterizedTest
-  @CsvSource({
-      "1,2",
-      "10,20",
-      "-1,-2"
-  })
-  void check_serviceExists(int a, int b) {
-    final int result = uut2.sum(a, b);
-    assertEquals(a + b, result);
+      final String expectedResult = "{\"result\":" + (a + b) + "}";
+      assertEquals(expectedResult, response);
+    }
   }
 }

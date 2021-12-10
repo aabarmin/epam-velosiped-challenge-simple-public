@@ -1,12 +1,6 @@
-package dev.abarmin.velosiped.task5;
+package dev.abarmin.velosiped.task4;
 
 import dev.abarmin.velosiped.helper.VelosipedHelper;
-import dev.abarmin.velosiped.task2.Request;
-import dev.abarmin.velosiped.task4.CustomHttpServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,21 +10,23 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import dev.abarmin.velosiped.task2.Request;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Aleksandr Barmin
  */
-class VelosipedTask5Test {
-    private DIContainer diContainer = VelosipedHelper.getInstance(DIContainer.class);
-    private CustomHttpServer server;
+class VelosipedTask4Test {
+
+    private CustomHttpServer server = VelosipedHelper.getInstance(CustomHttpServer.class);
 
     @BeforeEach
     void setUp() {
-
-        diContainer.init();
-        server = diContainer.getBean(CustomHttpServer.class);
         server.startServer(1234);
     }
 

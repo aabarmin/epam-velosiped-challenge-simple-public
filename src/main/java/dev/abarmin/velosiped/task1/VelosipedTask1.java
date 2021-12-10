@@ -1,7 +1,7 @@
 package dev.abarmin.velosiped.task1;
 
 /**
- * Task 1 - Simple GET calculator.
+ * Task 1 - GET some.
  *
  * <p>
  *   Implement a simple <pre>/sum</pre> endpoint which should receive requests via GET. The request
