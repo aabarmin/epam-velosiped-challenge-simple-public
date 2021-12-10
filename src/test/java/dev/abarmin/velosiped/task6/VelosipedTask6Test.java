@@ -17,8 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Aleksandr Barmin
@@ -29,7 +28,6 @@ class VelosipedTask6Test {
 
     @BeforeEach
     void setUp() {
-
         diContainer.init();
         server = diContainer.getBean(CustomSecuredHttpServer.class);
         server.startServer(1234);
@@ -65,7 +63,9 @@ class VelosipedTask6Test {
             final String response = reader.readLine();
 
             final String expectedResult = "{\"result\":" + (a + b) + "}";
-            assertEquals(expectedResult, response);
+            assertThat(response)
+                .withFailMessage("Unexpected response")
+                .isEqualTo(expectedResult);
         }
     }
 
@@ -89,13 +89,20 @@ class VelosipedTask6Test {
             outputStream.write(requestBody.getBytes(StandardCharsets.UTF_8));
         }
         int code = connection.getResponseCode();
-        assertEquals(code, 401);
+
+        assertThat(code)
+            .withFailMessage("Unexpected response code")
+            .isEqualTo(401);
+
         try (final InputStream stream = connection.getErrorStream()) {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
             final String response = reader.readLine();
 
             final String expectedResult = "Unauthorized access";
-            assertEquals(expectedResult, response);
+
+            assertThat(response)
+                .withFailMessage("Unexpected response body")
+                .isEqualTo(expectedResult);
         }
     }
 
