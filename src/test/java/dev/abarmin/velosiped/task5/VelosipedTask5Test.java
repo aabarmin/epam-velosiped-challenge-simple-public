@@ -28,7 +28,6 @@ class VelosipedTask5Test {
 
     @BeforeEach
     void setUp() {
-
         diContainer.init();
         server = diContainer.getBean(CustomHttpServer.class);
         server.startServer(1234);
@@ -108,6 +107,5 @@ class VelosipedTask5Test {
         assertTrue(response.contains("Content-Length: "));
         assertTrue(response.contains("Content-Type:"));
         assertTrue(response.contains("{\"result\":" + (a + b) + "}"));
-
     }
 }
