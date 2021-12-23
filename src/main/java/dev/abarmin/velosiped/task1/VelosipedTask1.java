@@ -3,6 +3,7 @@ package dev.abarmin.velosiped.task1;
 /**
  * Task 1 - GET some.
  *
+ *
  * <p>
  *   Implement a simple <pre>/sum</pre> endpoint which should receive requests via GET. The request
  *   contains parameters <pre>a</pre> and <pre>b</pre> which are two numbers which should be sum.
